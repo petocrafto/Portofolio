@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Saya</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <a href="#home" class="dot active" data-section="home"></a>
+        <a href="#about" class="dot" data-section="about"></a>
+        <a href="#projects" class="dot" data-section="projects"></a>
+        <a href="#contact" class="dot" data-section="contact"></a>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="fullpage-section">
+        <div class="content">
+            <h1>Halo, Saya <span class="highlight">Nann</span></h1>
+            <p class="subtitle">Orang yang masih mencoba coding</p>
+            <div class="scroll-down">
+                <span>Scroll ke bawah</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fullpage-section">
+        <div class="content">
+            <h2>Tentang Saya</h2>
+            <div class="about-grid">
+                <div class="profile-img">
+                    <img src="assets/images/profile.png" alt="Profil">
+                </div>
+                <div class="about-text">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, temporibus. Sunt corporis hic nostrum culpa non distinctio numquam, aliquid fugiat nulla dolores esse odio inventore nisi accusantium consectetur soluta? Maiores!</p>
+                    <div class="skills">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <a href="#projects" class="btn">Lihat Projek Saya</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="fullpage-section">
+        <div class="content">
+            <h2>Projek Terbaru</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="assets/images/web 7e.png" alt="Projek 1">
+                    </div>
+                    <h3>Web Kelas</h3>
+                    <p>Ini adalah Web untuk kelas 7E Di SMP Negeri 6 Temanggung</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="assets/images/form.png" alt="Projek 2">
+                    </div>
+                    <h3>Form Request Music</h3>
+                    <p>Web untuk request music dengan fitur admin</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="fullpage-section">
+        <div class="content">
+            <h2>Hubungi Saya</h2>
+            <div class="contact-grid">
+                <form class="contact-form">
+                    <input type="text" placeholder="Nama Anda" required>
+                    <input type="email" placeholder="Email Anda" required>
+                    <textarea placeholder="Pesan Anda" required></textarea>
+                    <button type="submit" class="btn">Kirim Pesan</button>
+                </form>
+                <div class="contact-info">
+                    <div class="social-links">
+                        <a href="https://github.com/petocrafto" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://www.instagram.com/nahhelbro0?igsh=NWxjbXpkcWxydWtx" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="https://tiktok.com/@kenz_____0" target="_blank"><i class="fab fa-tiktok"></i> TikTok 1</a>
+                        <a href="https://tiktok.com/@nakamaprst" target="_blank"><i class="fab fa-tiktok"></i> TikTok 2</a>
+                        <a href="mailto:email@example.com"><i class="fas fa-envelope"></i> Email</a>
+                    </div>
+                    <div class="address">
+                        <p><i class="fas fa-map-marker-alt"></i> Kota, Negara</p>
+                        <p><i class="fas fa-phone"></i> +62 123 4567 890</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
