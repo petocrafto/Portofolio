@@ -111,8 +111,10 @@ body {
     }
 }
 
-/* About Section */
+
 .about-grid {
+    margin-top: 2rem;
+    padding: 2rem 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
@@ -129,9 +131,54 @@ body {
 .skills {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 14px;
     margin: 1.5rem 0;
+    justify-content: center;
+    align-items: center;
 }
+
+.skills-vertical {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 4px 0;
+}
+
+.skill-label {
+    font-size: 1.08rem;
+    color: var(--text-color);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-left: 2px;
+}
+
+.skill-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: transparent;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.12);
+    transition: transform 0.2s;
+}
+.skill-logo:hover {
+    transform: scale(1.12) rotate(-2deg);
+    background: var(--accent-color, #64b5f6);
+}
+.skill-logo svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
 
 .skills span {
     background-color: var(--accent-color);
@@ -139,6 +186,25 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
+}
+
+.mobile-link-info {
+    display: none;
+}
+@media (max-width: 600px) {
+    .mobile-link-info {
+        display: block;
+        background: var(--accent-color);
+        color: var(--dark-bg);
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        border-radius: 7px 7px 0 0;
+        margin-bottom: 0;
+        padding: 7px 0 5px 0;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 10px 0 rgba(0,0,0,0.12);
+    }
 }
 
 /* Projects Section */
@@ -164,11 +230,42 @@ body {
     transform: translateY(-10px);
 }
 
-.project-img img {
+.project-link {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+.project-link img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    transition: opacity 0.3s;
 }
+.project-link::after {
+    content: 'Kunjungi';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    background: rgba(100,181,246,0.85);
+    color: #121212;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 8px 0 6px 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 0 0 10px 10px;
+    letter-spacing: 1px;
+}
+.project-link:hover img {
+    opacity: 0.7;
+}
+.project-link:hover::after {
+    opacity: 1;
+}
+
 
 .project-card h3 {
     padding: 1rem 1rem 0.5rem;
