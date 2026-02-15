@@ -1,4 +1,57 @@
+// API Configuration - Ganti dengan URL VPS Anda
+const API_CONFIG = {
+    baseURL: 'https://your-vps-domain.com/api', // Ganti dengan URL VPS Anda
+    endpoints: {
+        contact: '/contact',
+        blog: '/blog',
+        stats: '/stats'
+    }
+};
+
+// Loading Screen
+window.addEventListener('load', function() {
+    const loadingScreen = document.getElementById('loadingScreen');
+    setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }, 1000);
+});
+
+// Theme Toggle (Dark/Light Mode)
+function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    
+    // Check saved theme or default to dark
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') {
+        body.classList.add('light-theme');
+        themeToggle.querySelector('i').classList.remove('fa-moon');
+        themeToggle.querySelector('i').classList.add('fa-sun');
+    }
+    
+    themeToggle.addEventListener('click', function() {
+        body.classList.toggle('light-theme');
+        const isLight = body.classList.contains('light-theme');
+        
+        if (isLight) {
+            themeToggle.querySelector('i').classList.remove('fa-moon');
+            themeToggle.querySelector('i').classList.add('fa-sun');
+            localStorage.setItem('theme', 'light');
+        } else {
+            themeToggle.querySelector('i').classList.remove('fa-sun');
+            themeToggle.querySelector('i').classList.add('fa-moon');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize theme
+    initThemeToggle();
+    
     // Custom Cursor
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
@@ -118,43 +171,179 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Form submission with better UX
-    const contactForm = document.querySelector('.contact-form');
+    // Skills Progress Animation
+    function animateSkills() {
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBar = entry.target;
+                    const percent = progressBar.getAttribute('data-percent');
+                    progressBar.style.width = percent + '%';
+                    observer.unobserve(progressBar);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        skillBars.forEach(bar => observer.observe(bar));
+    }
+    animateSkills();
+    
+    // Statistics Counter Animation
+    function animateStats() {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target;
+                    const target = parseInt(statNumber.getAttribute('data-target'));
+                    animateCounter(statNumber, target);
+                    observer.unobserve(statNumber);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        statNumbers.forEach(stat => observer.observe(stat));
+    }
+    
+    function animateCounter(element, target) {
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                element.textContent = target + (target >= 1000 ? '+' : '');
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current) + (target >= 1000 ? '+' : '');
+            }
+        }, 30);
+    }
+    animateStats();
+    
+    // Load Blog Posts from API (Ready for VPS)
+    async function loadBlogPosts() {
+        const blogContainer = document.getElementById('blogContainer');
+        if (!blogContainer) return;
+        
+        try {
+            // Uncomment untuk menggunakan API dari VPS
+            // const response = await fetch(API_CONFIG.baseURL + API_CONFIG.endpoints.blog);
+            // const posts = await response.json();
+            
+            // Simulasi data (ganti dengan API call ke VPS)
+            const posts = [
+                {
+                    id: 1,
+                    title: 'Belajar Web Development dari Nol',
+                    excerpt: 'Panduan lengkap untuk memulai perjalanan sebagai web developer...',
+                    date: '2024-01-15',
+                    icon: 'fa-code'
+                },
+                {
+                    id: 2,
+                    title: 'Tips Mengoptimalkan Website',
+                    excerpt: 'Cara-cara untuk membuat website lebih cepat dan efisien...',
+                    date: '2024-02-20',
+                    icon: 'fa-rocket'
+                },
+                {
+                    id: 3,
+                    title: 'Menggunakan VPS untuk Portfolio',
+                    excerpt: 'Tutorial setup VPS untuk hosting portfolio website...',
+                    date: '2024-03-10',
+                    icon: 'fa-server'
+                }
+            ];
+            
+            blogContainer.innerHTML = '';
+            posts.forEach((post, index) => {
+                const blogCard = document.createElement('div');
+                blogCard.className = 'blog-card';
+                blogCard.style.animationDelay = `${index * 0.1}s`;
+                blogCard.innerHTML = `
+                    <div class="blog-card-image">
+                        <i class="fas ${post.icon}"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <h3>${post.title}</h3>
+                        <p>${post.excerpt}</p>
+                        <div class="blog-card-date">${new Date(post.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                        <a href="#" class="blog-card-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                `;
+                blogContainer.appendChild(blogCard);
+            });
+        } catch (error) {
+            console.error('Error loading blog posts:', error);
+            blogContainer.innerHTML = '<div class="blog-loading"><p>Gagal memuat artikel. Silakan coba lagi nanti.</p></div>';
+        }
+    }
+    loadBlogPosts();
+    
+    // Contact Form with API Integration (Ready for VPS)
+    const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Get form values
-            const name = this.querySelector('input[type="text"]').value.trim();
-            const email = this.querySelector('input[type="email"]').value.trim();
-            const message = this.querySelector('textarea').value.trim();
+            const formData = {
+                name: document.getElementById('contactName').value.trim(),
+                email: document.getElementById('contactEmail').value.trim(),
+                subject: document.getElementById('contactSubject').value.trim(),
+                message: document.getElementById('contactMessage').value.trim()
+            };
             
-            // Simple validation
-            if (!name || !email || !message) {
+            // Validation
+            if (!formData.name || !formData.email || !formData.subject || !formData.message) {
                 showNotification('Harap isi semua field!', 'error');
                 return;
             }
             
-            // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
+            if (!emailRegex.test(formData.email)) {
                 showNotification('Format email tidak valid!', 'error');
                 return;
             }
             
             // Show loading state
             const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Mengirim...';
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoader = submitBtn.querySelector('.btn-loader');
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline-block';
             submitBtn.disabled = true;
             
-            // Simulate form submission
-            setTimeout(() => {
-                showNotification(`Terima kasih ${name}! Pesan Anda telah terkirim. Saya akan segera menghubungi Anda melalui ${email}.`, 'success');
+            try {
+                // Uncomment untuk menggunakan API dari VPS
+                // const response = await fetch(API_CONFIG.baseURL + API_CONFIG.endpoints.contact, {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                //     body: JSON.stringify(formData)
+                // });
+                // 
+                // if (!response.ok) {
+                //     throw new Error('Gagal mengirim pesan');
+                // }
+                // 
+                // const result = await response.json();
+                
+                // Simulasi API call (ganti dengan API call ke VPS)
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                showNotification(`Terima kasih ${formData.name}! Pesan Anda telah terkirim. Saya akan segera menghubungi Anda melalui ${formData.email}.`, 'success');
                 this.reset();
-                submitBtn.textContent = originalText;
+            } catch (error) {
+                console.error('Error sending message:', error);
+                showNotification('Gagal mengirim pesan. Silakan coba lagi nanti.', 'error');
+            } finally {
+                btnText.style.display = 'inline-block';
+                btnLoader.style.display = 'none';
                 submitBtn.disabled = false;
-            }, 1500);
+            }
         });
     }
     
