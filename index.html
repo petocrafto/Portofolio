@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio website - Nann, seorang developer yang masih belajar coding">
     <title>Portofolio Saya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -21,7 +25,7 @@
         <div class="content">
             <h1>Halo, Saya <span class="highlight">Nann</span></h1>
             <p class="subtitle">Orang yang masih mencoba coding</p>
-            <div class="scroll-down">
+            <div class="scroll-down" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
                 <span>Scroll ke bawah</span>
                 <i class="fas fa-chevron-down"></i>
             </div>
@@ -32,16 +36,17 @@
     <section id="about" class="fullpage-section">
         <div class="content">
             <h2>Tentang Saya</h2>
-            <div class="about-grid" style="display: flex; justify-content: center; align-items: center;">
-
+            <div class="about-grid">
                 <div class="about-text">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste omnis exercitationem accusamus optio tempore? Quam blanditiis fuga, dolores laborum labore, voluptatum perspiciatis optio cupiditate reiciendis nihil magni praesentium quidem autem quaerat eius aliquam quis ex. Natus dolore, quos architecto error ullam ipsum ipsam tempora praesentium enim vitae dolores porro ea autem esse ducimus nam perspiciatis temporibus quisquam, unde eaque velit? Eveniet quidem recusandae temporibus accusamus est in cum exercitationem sapiente maxime facilis dignissimos unde nulla voluptatum ullam, veritatis, rerum deserunt fugiat doloremque omnis suscipit soluta laborum molestiae. Itaque molestiae accusamus minima sequi laborum harum similique officiis asperiores illo, ea ex.</p>
+                    <p>Halo! Saya adalah seorang developer yang masih dalam tahap belajar dan terus mengembangkan kemampuan dalam dunia pemrograman. Saya memiliki minat yang besar terhadap web development dan selalu bersemangat untuk mempelajari teknologi-teknologi baru. Meskipun masih dalam tahap pembelajaran, saya telah mengerjakan beberapa proyek yang dapat dilihat di bawah ini.</p>
                     <div class="skills">
                         <span>HTML</span>
                         <span>CSS</span>
                         <span>JavaScript</span>
                     </div>
-                    <a href="#projects" class="btn">Lihat Projek Saya</a>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#projects" class="btn">Lihat Projek Saya</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,8 +91,8 @@
                 <div class="contact-info">
                     <div class="social-links">
                         <a href="https://github.com/petocrafto" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        <a href="https://www.instagram.com/nahhelbro0?igsh=NWxjbXpkcWxydWtx" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-                        <a href="https://tiktok.com/@kenz_____0" target="_blank"><i class="fab fa-tiktok"></i> TikTok 1</a>
+                        <a href="https://www.instagram.com/kenanmiringkekanan" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="https://tiktok.com/@vel.elar" target="_blank"><i class="fab fa-tiktok"></i> TikTok 1</a>
                         <a href="https://tiktok.com/@nakamaprst" target="_blank"><i class="fab fa-tiktok"></i> TikTok 2</a>
                         <a href="mailto:josjis112233@gmail.com"><i class="fas fa-envelope"></i> Email</a>
                     </div>
